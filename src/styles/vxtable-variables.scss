@@ -1,0 +1,8 @@
+// @use "vxe-table/styles/variable.scss" with (
+//   $vxe-ui-font-primary-color: #f99
+// );
+
+// @use "vxe-table/styles/all.scss";
+$vxe-ui-font-primary-color: #f99;
+@import "vxe-table/styles/variable.scss";
+@import "vxe-table/styles/all.scss";

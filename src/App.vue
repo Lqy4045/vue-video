@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <nav>
+    <!-- <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/vxe-table">vxe-table</router-link> |
+      <router-link to="/father">father</router-link> |
+      <router-link to="/video">vue-video-player</router-link> |
+      <router-link to="/video1">videojs</router-link> |
+      <router-link to="/videoIframe">videoIframe</router-link> |
+    </nav> -->
+    <router-view />
   </div>
 </template>
 
