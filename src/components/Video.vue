@@ -1,10 +1,17 @@
 <template>
-  <div :style="{ width: videoWidth, height: videoHeight }">
+  <div
+    class="custom-video-wrapper"
+    :style="{ width: videoWidth, height: videoHeight }"
+  >
     <video
+      ref="video"
       :id="videoId"
       style="width: 100%; height: 100%"
-      class="video-js"
+      class="video-js video-item"
     ></video>
+    <div class="video-top-tools">
+      <slot name="top-tools"></slot>
+    </div>
   </div>
 </template>
 
@@ -27,21 +34,34 @@ export default {
     //视频宽度
     videoWidth: {
       type: String,
-      default: "200px",
+      default: "33%",
     },
     //视频高度
     videoHeight: {
       type: String,
-      default: "150px",
+      default: "33%",
     },
   },
   data() {
     return {
       options: {
-        autoplay: true, // 设置自动播放
+        autoplay: "muted", // 设置自动播放
         muted: true, // 设置了它为true，才可实现自动播放,同时视频也被静音 （Chrome66及以上版本，禁止音视频的自动播放）
         preload: "auto", // 预加载
         controls: true, // 显示播放的控件
+        // height: "240px",
+        // aspectRatio: "16:9",
+        // fluid: true,
+        controlBar: {
+          timeDivider: true,
+          durationDisplay: false,
+          remainingTimeDisplay: false,
+          currentTimeDisplay: true, //当前时间
+          volumeControl: false, //声音控制键
+          playToggle: false, //暂停和播放键
+          progressControl: false, //进度条
+          fullscreenToggle: true, //全屏按钮
+        },
       },
       player: null,
       videoId: "",
@@ -59,6 +79,18 @@ export default {
         },
       ]);
     },
+    getVideoDom() {
+      console.log("获取videoDom", this.$refs.video);
+      return this.$refs.video;
+    },
+  },
+  mounted() {
+    if (this.player) {
+      this.player.on("ended", function () {
+        // 播放结束后的操作
+        console.log("Video has ended");
+      });
+    }
   },
   watch: {
     //监听视频地址、video的id值
@@ -82,4 +114,22 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.custom-video-wrapper {
+  position: relative;
+
+  &:hover {
+    .video-top-tools {
+      display: block;
+    }
+  }
+  .video-top-tools {
+    display: none;
+    width: 100%;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    z-index: 4;
+  }
+}
+</style>

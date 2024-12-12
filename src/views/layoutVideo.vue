@@ -1,12 +1,5 @@
 <template>
-  <div>
-    <iframe
-      v-for="item in 20"
-      src="http://172.16.21.90:8080/video1"
-      frameborder="0"
-      style="width: 320px; height: 260px"
-    ></iframe>
-  </div>
+  <div class="hls-video-wrapper"></div>
 </template>
 <script>
 export default {

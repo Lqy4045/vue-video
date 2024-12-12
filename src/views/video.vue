@@ -45,7 +45,7 @@ export default {
         sources: [
           {
             type: "application/x-mpegURL",
-            src: "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241122/test_20241122.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=1734848589&Signature=lk%2BTB8OzXme5pS9wlYyexsv6HF8%3D",
+            src: "https://0472.org/hls/cgtna.m3u8",
           },
         ],
         poster:

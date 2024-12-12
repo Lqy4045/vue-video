@@ -10,6 +10,12 @@ import VideoPlayer from "vue-video-player";
 import "video.js/dist/video-js.css";
 
 import "vue-video-player/src/custom-theme.css";
+import ElementUI from "element-ui";
+import "./styles.scss";
+import "./styles/index.scss";
+Vue.use(ElementUI, {
+  size: "medium",
+});
 
 Vue.use(VideoPlayer);
 

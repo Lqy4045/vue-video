@@ -1,0 +1,100 @@
+// flex布局
+.flex {
+  display: flex;
+}
+.flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+.flex-justify-around {
+  display: flex;
+  justify-content: space-around;
+}
+.flex-justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-justify-flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+.flex-justify-flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+.flex-justify-flex-end-align-center {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.flex-enter-flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.flex-direction-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-direction-column-align-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flex-direction-column-justify-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flex-direction-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex-justify-between-align-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-justify-around-align-center {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.flex-justify-evenly-align-center {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.flex-justify-flex-center {
+  display: flex;
+  justify-content: center;
+}
+.inline-flex-align-center {
+  display: inline-flex;
+  vertical-align: middle;
+}
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flex-column-justify-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flex-column-justify-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

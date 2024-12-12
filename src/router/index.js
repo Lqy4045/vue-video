@@ -36,6 +36,11 @@ const routes = [
     component: () => import("@/views/videoIframe.vue"),
   },
   {
+    path: "/layoutVideo",
+    name: "layoutVideo",
+    component: () => import("@/views/layoutVideo.vue"),
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting
