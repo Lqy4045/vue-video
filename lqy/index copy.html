@@ -1,0 +1,109 @@
+<head>
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
+</head>
+
+<body>
+  <!-- <video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="640"
+    height="264"
+    data-setup="{}"
+  ></video> -->
+  <video-js
+    id="vid1"
+    width="600"
+    height="300"
+    class="vjs-default-skin"
+    controls
+  >
+  </video-js>
+  <!-- "core" version of Video.js -->
+
+  <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+
+  <script>
+    // var myPlayer = videojs("my-video", {
+    //   //   children: ["bigPlayButton", "controlBar"],
+    //   //   playbackRates: [0.5, 1, 1.5, 2],
+    //   children: {
+    //     controlBar: {
+    //       fullscreenToggle: true,
+    //       playToggle: {
+    //         replay: true,
+    //       },
+    //       volumePanel: {
+    //         inline: false,
+    //       },
+    //     },
+    //   },
+    //   //   spatialNavigation: {
+    //   //     enabled: true,
+    //   //     horizontalSeek: true,
+    //   //   },
+    //   //   userActions: {
+    //   //     click: true,
+    //   //   },
+    //   //   controlBar: {
+    //   //     skipButtons: {
+    //   //       forward: 5,
+    //   //     },
+    //   //   },
+    // });
+
+    // var Button = videojs.getComponent("Button");
+    // var button = new Button(myPlayer, {
+    //   clickHandler: function (event) {
+    //     videojs.log("Clicked");
+    //   },
+    // });
+
+    // console.log((button.el().innerText = "hello"));
+    // myPlayer.getChild("ControlBar").addChild(button);
+    // var button = myPlayer.getChild("ControlBar").addChild("button", {
+    //   clickHandler: function (event) {
+    //     videojs.log("Clicked");
+    //   },
+    // });
+    // const myButton = myPlayer.getChild("ControlBar").addChild("button", {
+    //   controlText: "My button",
+    //   className: "vjs-visible-text",
+    // });
+    // console.log(button.el());
+    // // const myButton = myPlayer
+    // //   .getChild("ControlBar")
+    // //   .addChild("button", { controlText: "My button" });
+    // myPlayer.src({
+    //   type: "video/mp4",
+    //   src: "http://vjs.zencdn.net/v/oceans.mp4",
+    // });
+    // // myPlayer.src({
+    // //   type: "application/x-mpegURL",
+    // //   src: "http://ata-dev.oss-cn-beijing.aliyuncs.com/multi_stream_20241212.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049350512&Signature=bXiC1cEZCA0sVVkh8MFDpx0VKak%3D",
+    // // });
+    // myPlayer.ready(function () {
+    //   // tech() will log warning without any argument
+    //   var tech = myPlayer.tech(true);
+    //   console.log("myPlayer.tech:", tech);
+    // });
+
+    var player = videojs("vid1");
+    player.src({
+      withCredentials: true,
+      type: "application/x-mpegURL",
+      src: "http://ata-dev.oss-cn-beijing.aliyuncs.com/multi_stream_20241212.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049350512&Signature=bXiC1cEZCA0sVVkh8MFDpx0VKak%3D",
+    });
+    player.ready(function () {
+      console.log("play准备好了");
+      // tech() will log warning without any argument
+      //   var tech = myPlayer.tech(true);
+      //   console.log("myPlayer.tech:", tech);
+      player.play();
+    });
+  </script>
+</body>

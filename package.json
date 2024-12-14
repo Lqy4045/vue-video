@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@videojs/http-streaming": "^3.15.0",
     "axios": "^1.7.7",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.14",
@@ -14,6 +15,8 @@
     "moment": "^2.30.1",
     "v-scale-screen": "^2.3.0",
     "videojs-contrib-hls": "^5.14.1",
+    "videojs-hls-quality-selector": "^2.0.0",
+    "videojs-resolution-switcher": "^0.4.2",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vue-video-player": "^5.0.2",
@@ -27,7 +30,7 @@
     "@vue/cli-service": "~5.0.0",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
-    "video.js": "^8.19.1",
+    "video.js": "^7.21.6",
     "vue-cli-plugin-element-ui": "~1.1.4",
     "vue-template-compiler": "^2.6.14"
   }

@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="custom-video-wrapper"
-    :style="{ width: videoWidth, height: videoHeight }"
-  >
+  <div class="custom-video-wrapper">
     <video
       ref="video"
       :id="videoId"
@@ -17,8 +14,12 @@
 
 <script>
 import videojs from "video.js";
-// import "videojs-contrib-hls";
+// import "videojs-resolution-switcher";
 
+// import "videojs-hls-quality-selector";
+// import "videojs-resolution-switcher/lib/videojs-resolution-switcher.css";
+// import "videojs-contrib-hls";
+// import videoJsResolutionSwitcher from "videojs-resolution-switcher";
 export default {
   props: {
     //视频地址、video的id值
@@ -31,16 +32,16 @@ export default {
         };
       },
     },
-    //视频宽度
-    videoWidth: {
-      type: String,
-      default: "33%",
-    },
-    //视频高度
-    videoHeight: {
-      type: String,
-      default: "33%",
-    },
+    // //视频宽度
+    // videoWidth: {
+    //   type: String,
+    //   default: "33%",
+    // },
+    // //视频高度
+    // videoHeight: {
+    //   type: String,
+    //   default: "33%",
+    // },
   },
   data() {
     return {
@@ -70,6 +71,11 @@ export default {
   methods: {
     getVideo(nowPlayVideoUrl, nowPlayVideoId) {
       this.player = videojs(nowPlayVideoId, this.options);
+
+      // this.player.hlsQualitySelector({
+      //   displayCurrentQuality: true,
+      // });
+
       // 关键代码， 动态设置src，才可实现换台操作
       //不动态设置依然也可以这样写
       this.player.src([
@@ -89,6 +95,9 @@ export default {
       this.player.on("ended", function () {
         // 播放结束后的操作
         console.log("Video has ended");
+      });
+      player.on("resolutionchange", function () {
+        console.log("清晰度已切换到：", player.currentResolution());
       });
     }
   },
@@ -116,6 +125,8 @@ export default {
 
 <style lang="scss" scoped>
 .custom-video-wrapper {
+  width: 100%;
+  height: 100%;
   position: relative;
 
   &:hover {

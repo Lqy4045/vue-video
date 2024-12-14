@@ -26,7 +26,7 @@
         <el-aside class="video-aside-wrapper" width="300px">
           <div class="video-aside-title-wrapper">
             <div class="aside-title">考站列表（50）</div>
-            <div class="aside-right">已筛 0</div>
+            <div class="aside-right">已筛 20</div>
           </div>
           <div class="video-search-wrapper">
             <el-select
@@ -58,7 +58,28 @@
             <template #default="{ node, data }">
               <!-- {{ data }} -->
               <div class="flex-justify-between-align-center" style="flex: 1">
-                <div>{{ data.label }}</div>
+                <div class="flex-align-center">
+                  {{ data.label }}
+                  <svg
+                    v-if="data.isGoBack"
+                    t="1733991246205"
+                    class="icon"
+                    viewBox="0 0 1024 1024"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    p-id="6739"
+                    id="mx_n_1733991246206"
+                    width="20"
+                    height="20"
+                    style="margin-left: 5px"
+                  >
+                    <path
+                      d="M896 160.01219a64 64 0 0 1 64 64v575.97562a64 64 0 0 1-64 64.02438h-512a64 64 0 0 1-64-64.02438V224.036571a64 64 0 0 1 64-64.024381h512zM228.010667 219.989333c19.870476 0 35.986286 16.14019 35.986285 36.010667v512a36.010667 36.010667 0 1 1-71.996952 0v-512c0-19.870476 16.11581-36.010667 36.010667-36.010667z m659.992381 12.01981H391.996952v559.981714h496.006096V232.009143z m-787.992381 51.98019c19.870476 0 35.986286 16.14019 35.986285 36.010667v384a36.010667 36.010667 0 1 1-71.996952 0v-384c0-19.870476 16.11581-36.010667 36.010667-36.010667z m462.409143 69.071238l208.018285 123.977143c23.04 13.726476 23.503238 46.957714 0.853334 61.318096l-207.993905 132.047238c-23.966476 15.189333-55.296-2.023619-55.296-30.403048v-256a36.010667 36.010667 0 0 1 54.442666-30.939429z m17.578666 94.305524v127.146667l103.302095-65.584762-103.302095-61.561905z"
+                      fill="#ffffff"
+                      p-id="6740"
+                    ></path>
+                  </svg>
+                </div>
                 <div
                   v-if="data.tags && data.tags.length"
                   class="flex-align-center"
@@ -102,13 +123,17 @@
               </div>
             </template>
           </el-tree>
+          <!-- <el-button>退回</el-button> -->
         </el-aside>
-        <el-main class="video-main-wrapper">
+        <el-main
+          class="video-main-wrapper"
+          :class="`video-main-wrapper${layoutNum}`"
+        >
           <BaseVideo
             :ref="item.cameraId"
             class="video-item"
             :class="item.cameraId"
-            :vData="item"
+            :c="item"
             v-for="item in vDataList"
           >
             <template #top-tools>
@@ -261,11 +286,24 @@ export default {
   },
   data() {
     return {
+      layoutNum: 9,
       vDataList: [],
+      videoList: [
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_1/test_20241212_1.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334190&Signature=hoFVK1svWsriq87XDrDd7YtDpOo%3D",
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_2/test_20241212_2.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334190&Signature=PTnleh1DqW4GK0pmmb3O6P7%2B4g0%3D",
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_3/test_20241212_3.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334191&Signature=KlIozgm%2FJEt%2FT3tSTk2GReQWel4%3D",
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_4/test_20241212_4.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334191&Signature=S81jvYTG%2BUAY6LJbISnsZcmFt%2F0%3D",
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_5/test_20241212_5.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334191&Signature=lK4O05I%2BVWAu5VH57SM3xJ2En5M%3D",
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_6/test_20241212_6.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334191&Signature=hvKwArMuQweKwAw%2F2C42gqp8EJw%3D",
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_7/test_20241212_7.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334191&Signature=4SMRVfwRsMVhpWFMFbO5C8yBvfE%3D",
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_8/test_20241212_8.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334191&Signature=7Z5xa39sJlI1H1fHCky3A%2FdE5pM%3D",
+        "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_9/test_20241212_9.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334191&Signature=QMtbdJve%2BZ8AKX0Hf%2Bx7Qkavqq4%3D",
+      ],
       treeConfig: {
         data: [
           {
             label: "江苏省",
+            isGoBack: true,
             children: [
               {
                 label: "南京市",
@@ -604,17 +642,12 @@ export default {
     };
   },
   created() {
-    Array(9)
-      .fill(20)
-      .forEach((item, index) => {
-        this.vDataList.push({
-          // hlsurl: "https://0472.org/hls/cgtna.m3u8",
-          hlsurl:
-            "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241119/test_20241119.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=1734402002&Signature=9QoAExFaWqD6YRB%2FY51QDi%2BYUiY%3D",
-          cameraId: `lqy${index}`, //id
-          picture: "",
-        });
-      });
+    this.initVideo();
+  },
+  watch: {
+    layoutNum() {
+      this.initVideo();
+    },
   },
   components: {
     Header,
@@ -622,6 +655,21 @@ export default {
     VScaleScreen,
   },
   methods: {
+    initVideo() {
+      // Array(this.layoutNum)
+      //   .fill(20)
+      this.videoList.forEach((item, index) => {
+        this.vDataList.push({
+          // hlsurl: "https://0472.org/hls/cgtna.m3u8",
+          hlsurl: item,
+          // "http://ata-dev.oss-cn-beijing.aliyuncs.com/multi_stream_20241212.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049350512&Signature=bXiC1cEZCA0sVVkh8MFDpx0VKak%3D",
+          // hlsurl:
+          //   "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_1/test_20241212_1.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334190&Signature=hoFVK1svWsriq87XDrDd7YtDpOo%3D",
+          cameraId: `lqy${index}`, //id
+          picture: "",
+        });
+      });
+    },
     getFull() {},
     testHandle(data) {
       alert(data);
@@ -676,7 +724,12 @@ export default {
       a.click();
     },
     changeCityHandle() {},
-    handleNodeClick() {},
+    handleNodeClick(a, b, c) {
+      console.log("点击", a, b, c);
+      if (!a.children) {
+        this.layoutNum = 1;
+      }
+    },
   },
 };
 </script>
@@ -748,6 +801,9 @@ $aside-bg-color: #434343;
         }
       }
       .video-main-wrapper {
+        padding: 10px 10px 10px 0;
+      }
+      .video-main-wrapper1 {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -756,6 +812,43 @@ $aside-bg-color: #434343;
         height: 100%;
 
         .video-item {
+          width: 100%;
+          height: 100%;
+          .video-tools-list {
+            box-sizing: border-box;
+            width: 100%;
+            background-color: rgba(97, 105, 127, 0.7);
+            height: 30px;
+            padding: 0 10px;
+            .top-base-info {
+              font-size: 13px;
+              .red {
+                margin-right: 10px;
+                color: red;
+              }
+              .orange {
+                margin-right: 10px;
+                color: orange;
+              }
+            }
+            .top-btn {
+              margin-left: 10px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .video-main-wrapper9 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 100%;
+
+        .video-item {
+          width: 33%;
+          height: 33%;
           .video-tools-list {
             box-sizing: border-box;
             width: 100%;
