@@ -63,6 +63,9 @@ export default {
           progressControl: false, //进度条
           fullscreenToggle: true, //全屏按钮
         },
+        userActions: {
+          click: false,
+        },
       },
       player: null,
       videoId: "",
