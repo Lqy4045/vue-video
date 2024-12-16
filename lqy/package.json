@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@videojs/http-streaming": "^3.15.0",
+    "video.js": "^8.21.0",
     "videojs-hls-quality-selector": "^2.0.0"
   }
 }

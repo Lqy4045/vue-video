@@ -1,30 +1,35 @@
 <head>
-  <!-- <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="./node_modules/video.js/dist/video-js.min.css" />
   <link
     rel="stylesheet"
-    href="https://cdn.bootcdn.net/ajax/libs/video.js/8.17.1/video-js.min.css"
+    href="./node_modules/videojs-hls-quality-selector/dist/videojs-hls-quality-selector.css"
   />
 </head>
-
+<style>
+  .point {
+    cursor: pointer;
+  }
+</style>
 <body>
   <video-js
     id="vid1"
-    width="600"
-    height="300"
+    width="1280"
+    height="720"
     class="vjs-default-skin"
     controls
   >
   </video-js>
   <ul class="menu">
-    <li onclick="lowHandle()">480</li>
-    <li onclick="highHandle()">720</li>
+    <li class="point" onclick="setQuality(480)">480</li>
+    <li class="point" onclick="setQuality(720)">720</li>
   </ul>
   <button onclick="getVideo()">获取当前分辨率</button>
-
-  <!-- <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script> -->
-  <script src="https://cdn.bootcdn.net/ajax/libs/video.js/8.17.1/video.min.js"></script>
-
-  <script src="https://unpkg.com/browse/@videojs/http-streaming@3.15.0/dist/videojs-http-streaming.min.js"></script>
+  <script src="./node_modules/video.js/dist/video.min.js"></script>
+  <!-- <script src="./node_modules/video.js/dist/video.min.js"></script> -->
+  <!-- <script src="./node_modules/videojs-contrib-quality-levels/dist/videojs-contrib-quality-levels.min.js"></script> -->
+  <script src="./node_modules/videojs-hls-quality-selector/dist/videojs-hls-quality-selector.min.js"></script>
+  <script src="./node_modules/@videojs/http-streaming/dist/videojs-http-streaming.min.js"></script>
+  <!-- <script src="https://unpkg.com/browse/@videojs/http-streaming@3.15.0/dist/videojs-http-streaming.min.js"></script> -->
 
   <script>
     var player = videojs("vid1", {
@@ -35,8 +40,7 @@
         },
       },
     });
-    let qualityLevels = player.qualityLevels();
-
+    // player.hlsQualitySelector();
     player.src({
       withCredentials: false,
       type: "application/x-mpegURL",
@@ -44,31 +48,44 @@
     });
     player.ready(function () {
       console.log("play准备好了");
-      // tech() will log warning without any argument
-      //   var tech = myPlayer.tech(true);
-      //   console.log("myPlayer.tech:", tech);
 
       player.play();
     });
-    player.on("loadeddata", () => {
-      console.log("监听流变化");
-      var vhs = player.tech().vhs;
-      //   console.log("vhs:", vhs);
-      console.log("vhs.playlists.main:", vhs.playlists.main);
-      console.log("vhs.playlists.media:", vhs.playlists.media());
+    player.on("loadedmetadata", function () {
+      setQuality(480);
     });
-    function lowHandle() {
-      console.log("切换低分辨率");
-      qualityLevels.selectedIndex_ = 0;
-      qualityLevels.trigger({ type: "change", selectedIndex: 0 });
+    player.on("progress", () => {
+      // console.log("progress");
+    });
+    player.qualityLevels().on("change", () => {
+      console.log("切换");
+    });
+    player.on("enterpictureinpicture", () => {
+      console.log("Entered Picture-in-Picture mode");
+    });
+
+    player.on("leavepictureinpicture", () => {
+      console.log("Exited Picture-in-Picture mode");
+    });
+    function setQuality(quality) {
+      console.log("quality:", quality);
+      const qualityList = this.player.qualityLevels();
+      console.log("qualityList:", qualityList.length);
+
+      for (let i = 0; i < qualityList.length; ++i) {
+        const { width, height } = qualityList[i];
+        const pixels = width > height ? height : width;
+        console.log("pixels:", pixels);
+        qualityList[i].enabled = pixels === quality;
+      }
     }
-    function highHandle() {
-      console.log("切换高辨率");
-      qualityLevels.selectedIndex_ = 1;
-      qualityLevels.trigger({ type: "change", selectedIndex: 1 });
-    }
+
     function getVideo() {
-      console.log("获取当前分辨率", qualityLevels);
+      console.log(
+        "获取当前分辨率",
+        player.currentSrc(),
+        player.qualityLevels()
+      );
     }
   </script>
 </body>
