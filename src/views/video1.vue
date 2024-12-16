@@ -390,7 +390,6 @@ export default {
   },
   data() {
     return {
-      layoutNum: 9,
       vDataList: [],
       videoList: [
         "http://ata-dev.oss-cn-beijing.aliyuncs.com/test_rtmp_live_20241212_1/test_20241212_1.m3u8?x-oss-process=hls%2Fsign&OSSAccessKeyId=LTAI5tGGRdCdjVUZ5FMF8MNo&Expires=2049334190&Signature=hoFVK1svWsriq87XDrDd7YtDpOo%3D",
@@ -762,7 +761,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.layoutNum = 9;
+      this.currentVideoList = this.videoList;
     },
     initVideo() {
       this.vDataList = [];
@@ -847,10 +846,6 @@ export default {
         default:
           break;
       }
-      // this.initVideo();
-      // if (!a.children) {
-      //   this.layoutNum = 1;
-      // }
     },
   },
 };
