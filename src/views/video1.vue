@@ -133,7 +133,7 @@
             :ref="item.cameraId"
             class="video-item"
             :class="item.cameraId"
-            :c="item"
+            :vData="item"
             v-for="item in vDataList"
           >
             <template #top-tools>
